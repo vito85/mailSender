@@ -1,11 +1,11 @@
 <<<<<<< HEAD
 # nodejs-mailsending
 
-# git clone https://github.com/sudhanshu647/nodejs-mailsending.git
+API for frontend  /zamki/send-mail
 
-# npm i
+# npm start
 
-change gmail user name and password
+
 
 # npm start
 =======
