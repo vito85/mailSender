@@ -5,8 +5,9 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 
+//cors config
 app.use(cors({
-    origin:["http://localhost:5000","https://api.codium.pro"]
+    origin:["http://localhost:3000","https://zamki.codium.pro"]
 }))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
