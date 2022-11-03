@@ -3,7 +3,11 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const app = express();
 require("dotenv").config();
+const cors = require("cors");
 
+app.use(cors({
+    origin:["http://localhost:5000","https://api.codium.pro"]
+}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const route = express.Router();
@@ -27,7 +31,7 @@ const transporter = nodemailer.createTransport({
     secure: true, // upgrades later with STARTTLS -- change this based on the PORT
 });
 
-route.post('/send-mail', (req, res) => {
+route.get('/send-mail', (req, res) => {
     let {fullName,email,phoneNumber,deliveryType,comment, subject, text } = req.body;
 
     const mailData = {
@@ -35,7 +39,11 @@ route.post('/send-mail', (req, res) => {
         to: "vitalimangasaryan@gmail.com",
         subject: `Заказ от ${fullName} `,
         text: `${comment}`,
-        html: `<b>${fullName}</b><br> email ${email}  phone ${phoneNumber}  ${deliveryType}<br/>`,
+        html: `<div >
+        <h6>email ${email} </h6>
+        <h6>fulname ${fullName}</h6>
+        <h6>phone ${phoneNumber}</h6>
+        </div>`,
     };
 
     transporter.sendMail(mailData, (error, info) => {
