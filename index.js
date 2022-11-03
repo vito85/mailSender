@@ -37,7 +37,7 @@ route.post('/send-mail', (req, res) => {
 
     const mailData = {
         from: 'vitmm44@mail.ru',
-        to: "vitalimangasaryan@gmail.com",
+        to: ["vitalimangasaryan@gmail.com","zamkitest@gmail.com"],
         subject: `Заказ от ${fullName} `,
         text: `${comment}`,
         html: `<div >
