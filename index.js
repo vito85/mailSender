@@ -31,7 +31,7 @@ const transporter = nodemailer.createTransport({
     secure: true, // upgrades later with STARTTLS -- change this based on the PORT
 });
 
-route.get('/send-mail', (req, res) => {
+route.post('/send-mail', (req, res) => {
     let {fullName,email,phoneNumber,deliveryType,comment, subject, text } = req.body;
 
     const mailData = {
