@@ -33,18 +33,24 @@ const transporter = nodemailer.createTransport({
 });
 
 route.post('/send-mail', (req, res) => {
-    let {fullName,email,phoneNumber,deliveryType,comment, subject, text } = req.body;
+    let {fullName,email,phoneNumber,deliveryType,comment,totalAmount,card} = req.body;
+    //     let name = "";
+    // for(let i = 0 ; i < card.length; i++){
+    //     name = name + card[i][name];
+    // }
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
+    
     const mailData = {
         from: 'vitmm44@mail.ru',
         to: ["vitalimangasaryan@gmail.com","zamkitest@gmail.com"],
-        subject: `Заказ от ${fullName} `,
+        subject: `Заказ от ${fullName} IP addres is ${ip}`,
         text: `${comment}`,
         html: `<div >
         <h6>email ${email} </h6>
         <h6>fulname ${fullName}</h6>
         <h6>phone ${phoneNumber}</h6>
-        </div>`,
+        </div>`
     };
 
     transporter.sendMail(mailData, (error, info) => {
