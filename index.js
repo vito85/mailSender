@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+const handlebars = require("handlebars");
 
 require("dotenv").config();
 const cors = require("cors");
