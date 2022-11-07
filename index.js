@@ -1,9 +1,13 @@
 const express = require("express");
+const fs = require("fs");
+const path = require("path");
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-const app = express();
+
 require("dotenv").config();
 const cors = require("cors");
+
+const app = express();
 
 //cors config
 app.use(cors({
@@ -21,6 +25,12 @@ app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
 
+const emailTemplateSource = fs.readFileSync(path.join(__dirname, "./template.hbs"), "utf8");
+
+const template = handlebars.compile(emailTemplateSource);
+
+
+
 
 const transporter = nodemailer.createTransport({
     port: process.env.HOST_PORT,
@@ -32,7 +42,7 @@ const transporter = nodemailer.createTransport({
     secure: true, // upgrades later with STARTTLS -- change this based on the PORT
 });
 
-route.post('/send-mail', (req, res) => {
+route.get('/send-mail', (req, res) => {
     let {fullName,email,phoneNumber,deliveryType,comment,totalAmount,card} = req.body;
     //     let name = "";
     // for(let i = 0 ; i < card.length; i++){
@@ -40,17 +50,20 @@ route.post('/send-mail', (req, res) => {
     // }
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
+    const htmlToSend = template({
+        name: fullName,
+        mail: email,
+        phone: phoneNumber,
+        total:totalAmount
+
+    });
     
     const mailData = {
         from: 'vitmm44@mail.ru',
         to: ["vitalimangasaryan@gmail.com","zamkitest@gmail.com"],
         subject: `Заказ от ${fullName} IP addres is ${ip}`,
         text: `${comment}`,
-        html: `<div >
-        <h6>email ${email} </h6>
-        <h6>fulname ${fullName}</h6>
-        <h6>phone ${phoneNumber}</h6>
-        </div>`
+        html: htmlToSend
     };
 
     transporter.sendMail(mailData, (error, info) => {
