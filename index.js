@@ -4,7 +4,6 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const handlebars = require("handlebars");
-
 require("dotenv").config();
 const cors = require("cors");
 
@@ -14,6 +13,7 @@ const app = express();
 app.use(cors({
     origin:["http://localhost:3000","https://zamki.codium.pro"]
 }))
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const route = express.Router();
@@ -55,7 +55,9 @@ route.post('/send-mail', (req, res) => {
         name: fullName,
         mail: email,
         phone: phoneNumber,
-        total:totalAmount
+        total:totalAmount,
+        delivery: deliveryType,
+        text:comment
 
     });
     
