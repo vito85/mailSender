@@ -57,7 +57,8 @@ route.post('/send-mail', (req, res) => {
         phone: phoneNumber,
         total:totalAmount,
         delivery: deliveryType,
-        text:comment
+        text:comment,
+        card:card 
 
     });
     

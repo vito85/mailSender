@@ -8,10 +8,19 @@
     
                 <h3> Name: {{name}}</h3>
                 <h4>Phone Number: {{phone}}</h4>
-                <h4>Email: {{mail}}</h4>
+                <h4>Email: {{mail}}</h4>x
                 <h4>Delivery Type: {{delivery}}</h4>
                 <h4>Total Amount: {{total}}</h4>
                   <p>Comment:{{text}}</p>
+
+                  <P>
+                    {{#each card}}
+                    <H4>product name : {{name}} : count {{count}}</H4>
+                    <h5>item URL:{{img.url}}</h5>
+
+                    {{/each}}
+
+                  </P>
 
     </div>
   </body>
