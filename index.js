@@ -44,11 +44,8 @@ const transporter = nodemailer.createTransport({
 });
 
 route.post('/send-mail', (req, res) => {
-    let {fullName,email,phoneNumber,deliveryType,comment,totalAmount,card} = req.body;
-    //     let name = "";
-    // for(let i = 0 ; i < card.length; i++){
-    //     name = name + card[i][name];
-    // }
+    const  {fullName,email,phoneNumber,deliveryType,comment,totalAmount,card} = req.body;
+   
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
     const htmlToSend = template({
