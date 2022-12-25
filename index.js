@@ -11,7 +11,7 @@ const app = express();
 
 //cors config
 app.use(cors({
-    origin:["http://localhost:3000","https://zamki.codium.pro"]
+	origin:["http://localhost:3000","https://zamki.codium.pro", "https://prozamki.com"]
 }))
 
 app.use(bodyParser.json());
@@ -60,7 +60,7 @@ route.post('/send-mail', (req, res) => {
     });
     
     const mailData = {
-        from: 'vitmm44@mail.ru',
+        from: process.env.EMAIL,
         to: ["vitalimangasaryan@gmail.com","zamkitest@gmail.com"],
         subject: `Заказ от ${fullName} IP addres is ${ip}`,
         text: `${comment}`,
