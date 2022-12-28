@@ -4,28 +4,19 @@
   </head>
   <body>
     <div>
-     
-    
-                <h3> Name: {{name}}</h3>
-                <h4>Phone Number: {{phone}}</h4>
-                <h4>Email: {{mail}}</h4>x
-                <h4>Delivery Type: {{delivery}}</h4>
-                <h4>Total Amount: {{total}}</h4>
-                  <p>Comment:{{text}}</p>
-
-                  <P>
-                    {{#each card}}
-                    <H4>product name : {{name}} : count {{count}}</H4>
-                    {{!-- <h5>item URL:{{img.url}}</h5> --}}
-                    <!-- <a href="https://cms.prozamki.com"+{{url}}>item foto</a> -->
-                    <a href={{BASE_URL}}+{{url}}>item foto</a>
-                    
-
-
-                    {{/each}}
-
-                  </P>
-
+      <h3> Имя: {{name}}</h3>
+      <h4> Номер Телефона: {{phone}}</h4>
+      <h4> Почта: {{mail}}</h4>
+      <h4> Способ Доставки: {{delivery}}</h4>
+      <p>  Комментарии к заказу: {{text}}</p>
+      <P>
+        {{#each card}}
+        <H4>Имя Продукта: {{name}}</H4>
+        <H4>Количество {{count}}</H4>
+        <a href={{baseURL}}{{url}}>Смотреть Фото</a>
+        {{/each}}
+      </P>
+      <h4> Итого: {{total}}</h4>
     </div>
   </body>
 </html>

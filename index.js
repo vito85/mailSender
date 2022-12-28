@@ -6,13 +6,16 @@ const nodemailer = require('nodemailer');
 const handlebars = require("handlebars");
 require("dotenv").config();
 const cors = require("cors");
-
 const app = express();
 
 //cors config
 app.use(cors({
 	origin:["http://localhost:3000","https://zamki.codium.pro", "https://prozamki.com"]
-}))
+}));
+
+handlebars.registerHelper('baseURL', () => {
+    return process.env.BASE_URL
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -54,8 +57,8 @@ route.post('/send-mail', (req, res) => {
         phone: phoneNumber,
         total:totalAmount,
         delivery: deliveryType,
-        text:comment,
-        card:card 
+        text: comment,
+        card: card 
 
     });
     
