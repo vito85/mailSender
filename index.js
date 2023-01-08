@@ -49,7 +49,7 @@ const transporter = nodemailer.createTransport({
 route.post('/send-mail', (req, res) => {
     const  {fullName,email,phoneNumber,deliveryType,comment,totalAmount,card} = req.body;
    
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    //const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
     const htmlToSend = template({
         name: fullName,
